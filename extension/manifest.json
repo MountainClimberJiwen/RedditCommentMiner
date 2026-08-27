@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Reddit Comment Miner",
-  "version": "1.0",
+  "version": "1.0.1",
   "description": "从 Reddit 评论中挖掘用户痛点、需求与功能请求",
   "icons": {
     "16": "icon16.png",
@@ -44,7 +44,9 @@
     "sidePanel"
   ],
   "host_permissions": [
-    "https://www.reddit.com/*",
+    "https://www.reddit.com/*"
+  ],
+  "optional_host_permissions": [
     "https://*/*",
     "http://localhost/*",
     "http://127.0.0.1/*"

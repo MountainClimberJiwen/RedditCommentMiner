@@ -46,7 +46,7 @@
 | `sidePanel` | 在 Chrome 侧边栏展示分析结果与历史记录 | `chrome.storage.local` 中的结果记录 | 无 | 无 |
 | `storage` | 在本地保存扩展配置与分析结果 | 用户填写的配置项、分析结果 | 同左 | 无（仅在用户主动调用外部 API 时携带，见下） |
 | `host_permissions`（`https://www.reddit.com/*`） | 限定内容脚本运行范围到 Reddit 评论页 | Reddit 页面 DOM | 无 | 无 |
-| `host_permissions`（`https://*/*`、`http://localhost/*`、`http://127.0.0.1/*`） | 允许扩展向用户自定义的 LLM 接口发起请求 | 无 | 无 | Reddit 评论文本（仅在用户点击「分析」后） |
+| `optional_host_permissions`（`https://*/*`、`http://localhost/*`、`http://127.0.0.1/*`） | 默认不启用；仅在用户在选项页保存/测试 LLM 配置时，按用户填写的具体域名动态请求授权，用于向用户自定义的 LLM 接口发送请求 | 无 | 无 | Reddit 评论文本（仅在用户点击「分析」后） |
 
 ---
 
