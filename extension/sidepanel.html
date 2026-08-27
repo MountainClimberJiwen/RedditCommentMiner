@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    body {
+      min-height: 100vh;
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'PingFang SC', 'Microsoft YaHei', sans-serif;
+      background: #f7f8fa;
+      color: #333;
+      padding: 20px 16px 40px;
+      font-size: 14px;
+      line-height: 1.6;
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      margin-bottom: 18px;
+      padding-bottom: 16px;
+      border-bottom: 1px solid #e0e0e0;
+    }
+    .header-left {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .logo {
+      width: 40px;
+      height: 40px;
+      border-radius: 8px;
+      object-fit: contain;
+      background: #fff;
+      padding: 2px;
+      box-shadow: 0 1px 3px rgba(0,0,0,0.08);
+    }
+    .title h1 {
+      font-size: 16px;
+      font-weight: 600;
+    }
+    .title p {
+      font-size: 12px;
+      color: #888;
+      margin-top: 2px;
+    }
+    .icon-btn {
+      background: transparent;
+      border: none;
+      color: #666;
+      cursor: pointer;
+      padding: 6px;
+      border-radius: 6px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .icon-btn:hover {
+      background: #f0f0f0;
+      color: #333;
+    }
+    .stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 10px;
+      margin-bottom: 18px;
+    }
+    .stat-card {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-card .value {
+      font-size: 20px;
+      font-weight: 600;
+      color: #333;
+    }
+    .stat-card .label {
+      font-size: 12px;
+      color: #888;
+      margin-top: 4px;
+    }
+    .section-title {
+      font-size: 13px;
+      font-weight: 600;
+      color: #555;
+      margin-bottom: 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 12px;
+    }
+    .filter-btn {
+      padding: 5px 10px;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      background: #fff;
+      font-size: 12px;
+      color: #555;
+      cursor: pointer;
+      transition: all 0.2s;
+    }
+    .filter-btn:hover {
+      border-color: #4CAF50;
+      color: #4CAF50;
+    }
+    .filter-btn.active {
+      background: #4CAF50;
+      color: #fff;
+      border-color: #4CAF50;
+    }
+    .events {
+      background: #fff;
+      border: 1px solid #e8e8e8;
+      border-radius: 8px;
+      overflow: hidden;
+      margin-bottom: 18px;
+    }
+    .event-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      font-size: 13px;
+    }
+    .event-item:last-child {
+      border-bottom: none;
+    }
+    .event-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 6px;
+    }
+    .event-mode {
+      font-size: 11px;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: 500;
+      text-transform: uppercase;
+    }
+    .event-mode.pain_point { background: #ffebee; color: #c62828; }
+    .event-mode.feature_request { background: #e3f2fd; color: #1565c0; }
+    .event-mode.question { background: #fff3e0; color: #ef6c00; }
+    .event-mode.feedback { background: #e8f5e9; color: #2e7d32; }
+    .event-mode.insight { background: #f3e5f5; color: #6a1b9a; }
+    .event-confidence {
+      font-size: 11px;
+      color: #aaa;
+    }
+    .event-title {
+      font-weight: 600;
+      color: #333;
+      margin-bottom: 4px;
+      line-height: 1.4;
+    }
+    .event-desc {
+      color: #555;
+      line-height: 1.5;
+      margin-bottom: 6px;
+    }
+    .event-evidence {
+      font-size: 11px;
+      color: #888;
+      border-left: 2px solid #e0e0e0;
+      padding-left: 8px;
+    }
+    .event-evidence-item {
+      margin-bottom: 3px;
+    }
+    .history-item {
+      padding: 12px 14px;
+      border-bottom: 1px solid #f0f0f0;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .history-item:last-child {
+      border-bottom: none;
+    }
+    .history-item:hover {
+      background: #f7f8fa;
+    }
+    .history-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: #333;
+      line-height: 1.4;
+      margin-bottom: 4px;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      overflow: hidden;
+    }
+    .history-meta {
+      font-size: 11px;
+      color: #888;
+      display: flex;
+      justify-content: space-between;
+    }
+    .empty {
+      padding: 30px 16px;
+      text-align: center;
+      color: #aaa;
+      font-size: 13px;
+    }
+    .btn {
+      width: 100%;
+      padding: 11px;
+      border: none;
+      border-radius: 8px;
+      background: #4CAF50;
+      color: #fff;
+      font-size: 14px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background 0.2s;
+    }
+    .btn:hover {
+      background: #45a049;
+    }
+    .hidden {
+      display: none !important;
+    }
+  </style>
+</head>
+<body>
+  <div class="header">
+    <div class="header-left">
+      <img class="logo" src="icon48.png" alt="">
+      <div class="title">
+        <h1>Reddit Comment Miner</h1>
+        <p id="subtitle">暂无分析结果</p>
+      </div>
+    </div>
+    <button class="icon-btn" id="historyBtn" title="历史记录">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="10"></circle>
+        <polyline points="12 6 12 12 16 14"></polyline>
+      </svg>
+    </button>
+  </div>
+
+  <div id="mainView">
+    <div class="stats">
+      <div class="stat-card">
+        <div class="value" id="commentCount">-</div>
+        <div class="label">评论数</div>
+      </div>
+      <div class="stat-card">
+        <div class="value" id="insightCount">-</div>
+        <div class="label">洞察数</div>
+      </div>
+    </div>
+
+    <div class="section-title">
+      <span>需求洞察</span>
+    </div>
+    <div id="filters" class="filters"></div>
+    <div class="events" id="eventsContainer">
+      <div class="empty">在 popup 中点击“分析当前帖子评论”后，结果将显示在这里。</div>
+    </div>
+
+    <button class="btn" id="openOptionsBtn">打开设置页</button>
+  </div>
+
+  <div id="historyView" class="hidden">
+    <div class="section-title">
+      <span>最近 10 次分析</span>
+      <button class="icon-btn" id="backBtn" title="返回">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <line x1="18" y1="6" x2="6" y2="18"></line>
+          <line x1="6" y1="6" x2="18" y2="18"></line>
+        </svg>
+      </button>
+    </div>
+    <div class="events" id="historyContainer">
+      <div class="empty">暂无历史记录</div>
+    </div>
+  </div>
+
+  <script src="sidepanel.js"></script>
+</body>
+</html>
